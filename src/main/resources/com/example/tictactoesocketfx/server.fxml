@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="576.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictactoesocketfx.ServerController">
+    <TextField fx:id="portField" layoutX="203.0" layoutY="103.0" promptText="PORT number" />
+    <Button fx:id="btnStart" layoutX="252.0" layoutY="200.0" mnemonicParsing="false" onAction="#onStartBtn" text="Start" />
+    <Button fx:id="btnBack" layoutX="252.0" layoutY="275.0" mnemonicParsing="false" onAction="#onBackBtn" text="BACK" />
+</AnchorPane>
