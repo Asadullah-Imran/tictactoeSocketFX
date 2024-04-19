@@ -119,8 +119,43 @@ public class Game extends Application {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+//                if(won||enemyWon||tie){
+//                    try {
+//                        // Sleep for a short duration to reduce CPU usage
+//                        draw();
+//                        Thread.sleep(5000);
+//                        break;
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+                if (won || enemyWon || tie) {
+                    try {
+                        // Sleep for a short duration to reduce CPU usage
+                        draw();
+                        Thread.sleep(5000);
+                        Platform.runLater(() -> {
+                            try {
+                                showGameOverScene();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+                        break;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
+
+//            try {
+//                showGameOverScene();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+
         }).start();
+
             canvas.setOnMouseClicked(event -> {
                 if (accepted) {
                     if (yourTurn && !unableToCommunicateWithOpponent && !won && !enemyWon) {
@@ -327,6 +362,13 @@ public void showMenuPage() throws IOException {
     public void showServerPage() throws IOException {
         System.out.println("show server page called");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tictactoesocketfx/server.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+    }
+    public void showGameOverScene() throws IOException {
+        System.out.println("show game Over page called");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tictactoesocketfx/gameOver.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
